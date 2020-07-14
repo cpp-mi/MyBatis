@@ -18,8 +18,8 @@
 
     <sql id="user_query_id">
         <if test="ids!=null">
-            <foreach collection="ids" item="id" open="and id in (" close=")" separator=",">
-                #{id}
+            <foreach collection="ids" item="id" open="and (" close=")" separator="or">
+                id=#{id}
             </foreach>
         </if>
     </sql>
@@ -27,8 +27,8 @@
 
     <sql id="user_query_id1">
         <if test="ids!=null">
-            <foreach collection="ids" item="id" open="or id in (" close=")" separator=",">
-                #{id}
+            <foreach collection="ids" item="id" open="or (" close=")" separator="or">
+                id=#{id}
             </foreach>
         </if>
     </sql>
