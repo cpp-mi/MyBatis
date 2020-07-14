@@ -77,4 +77,38 @@ public class UserMapperTest {
         //关闭资源
         sqlSession.close();
     }
+    @Test
+    public void update() throws ParseException {
+        //创建会话对象
+        SqlSession sqlSession = factory.openSession();
+        //获得代理对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        //封装User对象
+        String str = "2019-09-09";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = sdf.parse(str);
+        User user = new User(27,"马汉","2",date,"江苏无");
+        userMapper.update(user);
+        System.out.println(user);
+        //提交事务
+        sqlSession.commit();
+        //关闭资源
+        sqlSession.close();
+    }
+
+    @Test
+    public void delete() throws ParseException {
+        //创建会话对象
+        SqlSession sqlSession = factory.openSession();
+        //获得代理对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        //执行删除操作
+        userMapper.delete(27);
+        //提交事务
+        sqlSession.commit();
+        //关闭资源
+        sqlSession.close();
+    }
 }
